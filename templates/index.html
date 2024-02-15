@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .button-group {
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Test Execution</h1>
+        <form action="/execute" method="post">
+            <div class="form-group">
+                <label for="service">Select Microservice:</label>
+                <select class="form-control" id="service" name="service">
+                    <option value="">--Select--</option> <!-- Blank default option -->
+                    {% for service in services.keys() %}
+                        <option value="{{ service }}">{{ service }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="test">Select Test Case:</label>
+                <select class="form-control" id="test" name="test">
+                    <!-- Options will be populated by JavaScript -->
+                </select>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">Run Test</button>
+                <button type="button" class="btn btn-success" id="sendReportBtn">Send Report</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            var services = {{ services | tojson }};
+
+            $('#service').change(function() {
+                var selectedService = $(this).val();
+                var $testDropdown = $('#test');
+                $testDropdown.empty(); // Clear the existing options
+
+                // Check if the selected service has tests
+                if (services[selectedService]) {
+                    // Populate the second dropdown with the tests for the selected service
+                    services[selectedService].forEach(function(test) {
+                        $('<option>').val(test).text(test).appendTo($testDropdown);
+                    });
+                }
+            });
+        });
+        // Handle click event for the send report button
+        $('#sendReportBtn').click(function() {
+        // Make an AJAX request to the Flask route to send the report
+        $.post('/send_report', function(data) {
+            // Display the result of the report sending operation
+            alert(data);
+        });
+    });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
