@@ -1,4 +1,3 @@
-# Test-Runner
 # Test Runner
 
 Test Runner is a simple web application designed to facilitate running test cases for microservices.
