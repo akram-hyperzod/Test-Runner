@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Test Execution</title>
-    <link href="./output.css" rel="stylesheet" />
+    <link href={{url_for('static', filename='css/output.css')}} rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,11 +12,12 @@
       rel="stylesheet"
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
   </head>
 
   <body class="bg-[#171717] text-[#FFFFFF] font-poppins">
     <div class="text-center flex flex-col items-center mt-5 mb-16">
-      <img src="./assets/logo.png" alt="Hyperzod" class="w-[450px] mb-24" />
+      <img src={{ url_for('static', filename='assets/logo.png')}} alt="Hyperzod" class="w-[450px] mb-24" />
       <h1 class="text-2xl font-semibold">Test Execution Environment</h1>
     </div>
 

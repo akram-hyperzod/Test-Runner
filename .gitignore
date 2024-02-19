@@ -1,2 +1,5 @@
 /venv
 *.pak 
+.tailwind.config.js
+.*json
+/node_modules/
