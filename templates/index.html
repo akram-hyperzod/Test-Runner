@@ -18,12 +18,12 @@
   <body class="bg-[#171717] text-[#FFFFFF] font-poppins">
     <div class="text-center flex flex-col items-center mt-5 mb-16">
       <img src={{ url_for('static', filename='assets/logo.png')}} alt="Hyperzod" class="w-[450px] mb-24" />
-      <h1 class="text-2xl font-semibold">Test Execution Environment</h1>
+      <h1 class="text-2xl font-semibold">On-Demand Test Runner</h1>
     </div>
 
     <form action="/execute" method="post" class="flex flex-col items-center">
       <div class="form-group flex flex-col text-black mb-8">
-        <label for="service" class="text-[#FFFFFF] mb-3">Microservice</label>
+        <label for="service" class="text-[#FFFFFF] mb-3">Test Module</label>
         <select class="form-control w-[500px]" id="service" name="service">
           <option value="">--Select--</option>
           <!-- Blank default option -->
@@ -34,7 +34,7 @@
       </div>
 
       <div class="form-group flex flex-col text-black mb-14">
-        <label for="test" class="text-[#FFFFFF] mb-3">Test Case</label>
+        <label for="test" class="text-[#FFFFFF] mb-3">Test Suites</label>
         <select class="form-control w-[500px]" id="test" name="test">
           <!-- Comment this after styling-->
           <option value="">--Select--</option>

@@ -3,3 +3,5 @@
 .tailwind.config.js
 .*json
 /node_modules/
+*.html
+*.env
